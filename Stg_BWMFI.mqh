@@ -78,7 +78,7 @@ class Stg_BWMFI : public Strategy {
     bool _is_valid = _indi[CURR].IsValid() && _indi[PREV].IsValid() && _indi[PPREV].IsValid();
     bool _result = _is_valid;
     if (_is_valid) {
-      double _change_pc = Math::ChangeInPct(_indi[2][(int)BWMFI_BUFFER], _indi[0][(int)BWMFI_BUFFER]);
+      double _change_pc = Math::ChangeInPct(_indi[_shift + 2][(int)BWMFI_BUFFER], _indi[_shift][(int)BWMFI_BUFFER], true);
       switch (_cmd) {
         case ORDER_TYPE_BUY:
           _result &= _change_pc > _level;
